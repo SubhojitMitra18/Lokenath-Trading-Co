@@ -31,14 +31,8 @@ a{color:inherit}
 html{scroll-behavior:smooth}
 #bar{position:fixed;left:0;top:0;height:4px;width:100%;background:#F2C200;transform-origin:0 50%;transform:scaleX(0);z-index:100}
 header.top{position:sticky;top:0;z-index:50}
-.c1,.c2,.c3{animation:loopA 8s cubic-bezier(.65,0,.35,1) infinite}
-.c1{--fx:-70%;--fy:-50%}
-.c2{--fx:70%;--fy:-50%;animation-delay:.15s}
-.c3{--fx:0%;--fy:80%;animation-delay:.3s}
-.c4{animation:loopB 8s cubic-bezier(.65,0,.35,1) .5s infinite}
-@keyframes loopA{0%{transform:translate(var(--fx),var(--fy));opacity:0}22%,72%{transform:none;opacity:1}94%,100%{transform:translate(var(--fx),var(--fy));opacity:0}}
-@keyframes loopB{0%,18%{transform:scale(0);opacity:0}30%,70%{transform:none;opacity:.92}85%,100%{transform:scale(0);opacity:0}}
-#art{isolation:isolate;contain:layout paint;transform:translateZ(0)}
+#artsvg{animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.03)}}
 .js [data-r]{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .js [data-r].in{opacity:1;transform:none}
 article,.fl{transition:transform .25s ease}
@@ -49,11 +43,11 @@ article,.fl{transition:transform .25s ease}
 .pulse{animation:ring 2.2s ease-out infinite}
 @keyframes ring{0%{box-shadow:0 0 0 0 rgba(242,194,0,.7)}100%{box-shadow:0 0 0 16px rgba(242,194,0,0)}}
 @media (prefers-reduced-motion:reduce){
-.mq,.c1,.c2,.c3,.c4,.pulse{animation:none!important}
+.mq,#artsvg,.pulse{animation:none!important}
 .js [data-r]{opacity:1;transform:none;transition:none}
 html{scroll-behavior:auto}}
 .tc{opacity:0}.tc.on{opacity:1}.tc.cur{box-shadow:.09em 0 0 var(--caret,currentColor)}
-.paused .c1,.paused .c2,.paused .c3,.paused .c4,.paused .spin,.paused.mqw .mq{animation-play-state:paused}
+.paused #artsvg,.paused.mqw .mq{animation-play-state:paused}
 @media (prefers-reduced-motion:reduce){.tc{opacity:1}}
 
 #tabs{display:none}
@@ -109,7 +103,7 @@ footer{padding:24px 20px!important}
     <a class="dl" href="#parts" style="text-decoration:none;color:#fff;padding:10px 0">Machine parts</a>
     <a class="dl" href="#group" style="text-decoration:none;color:#fff;padding:10px 0">Our firms</a>
     <a class="dl" href="#find" style="text-decoration:none;color:#fff;padding:10px 0">Find us</a>
-    <a class="btn pulse" href="tel:+919831193891" style="text-decoration:none;background:#F2C200;color:#10213F;font-weight:700;padding:12px 20px;border-radius:6px">Call 98311 93891</a>
+    <a class="btn" href="tel:+919831193891" style="text-decoration:none;background:#F2C200;color:#10213F;font-weight:700;padding:12px 20px;border-radius:6px">Call 98311 93891</a>
   </nav>
 </header>
 
@@ -134,17 +128,14 @@ footer{padding:24px 20px!important}
     <!-- CMYK registration -->
     <div style="flex:0 1 440px;min-width:0;display:flex;justify-content:center">
       <div id="art" style="position:relative;width:min(100%,420px);aspect-ratio:1/1;background:#F5F7FA;border-radius:8px;overflow:hidden">
-        <div class="c1" style="position:absolute;left:12%;top:10%;width:56%;height:56%;border-radius:50%;background:#00A3D9;mix-blend-mode:multiply"></div>
-        <div class="c2" style="position:absolute;left:32%;top:10%;width:56%;height:56%;border-radius:50%;background:#E0147A;mix-blend-mode:multiply"></div>
-        <div class="c3" style="position:absolute;left:22%;top:30%;width:56%;height:56%;border-radius:50%;background:#FFD900;mix-blend-mode:multiply"></div>
-        <div class="c4" style="position:absolute;left:42%;top:42%;width:34%;height:34%;border-radius:50%;background:#10213F;mix-blend-mode:multiply;opacity:.92"></div>
-        <svg class="spin" aria-hidden="true" viewBox="0 0 100 100" style="position:absolute;right:5%;top:5%;width:14%;height:14%"><circle cx="50" cy="50" r="30" fill="none" stroke="#10213F" stroke-width="3"/><path d="M50 4v92M4 50h92" stroke="#10213F" stroke-width="3"/></svg>
-        <div style="position:absolute;left:5%;bottom:4%;right:5%;display:flex;gap:6px">
-          <div style="flex:1;height:10px;background:#00A3D9"></div>
-          <div style="flex:1;height:10px;background:#E0147A"></div>
-          <div style="flex:1;height:10px;background:#FFD900"></div>
-          <div style="flex:1;height:10px;background:#10213F"></div>
-        </div>
+        <svg id="artsvg" aria-hidden="true" viewBox="0 0 420 420" style="position:absolute;inset:0;width:100%;height:100%">
+          <circle cx="170" cy="165" r="118" fill="#00A3D9" fill-opacity=".85"/>
+          <circle cx="252" cy="165" r="118" fill="#E0147A" fill-opacity=".8"/>
+          <circle cx="210" cy="238" r="118" fill="#FFD900" fill-opacity=".8"/>
+          <circle cx="228" cy="226" r="62" fill="#10213F" fill-opacity=".92"/>
+          <g fill="none" stroke="#10213F" stroke-width="3"><circle cx="372" cy="48" r="18"/><path d="M372 22v52M346 48h52"/></g>
+          <rect x="22" y="392" width="86" height="10" fill="#00A3D9"/><rect x="114" y="392" width="86" height="10" fill="#E0147A"/><rect x="206" y="392" width="86" height="10" fill="#FFD900"/><rect x="298" y="392" width="100" height="10" fill="#10213F"/>
+        </svg>
       </div>
     </div>
   </div>
@@ -375,8 +366,8 @@ function bail(){if(sec)sec.style.display="none";}
 if(!wrap||!window.THREE){bail();return;}
 var T=THREE,reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 var canvas=document.getElementById("pressCanvas"),renderer;
-try{renderer=new T.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});}catch(e){bail();return;}
-renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
+try{renderer=new T.WebGLRenderer({canvas:canvas,antialias:!matchMedia("(max-width:720px)").matches,alpha:true,powerPreference:"low-power"});}catch(e){bail();return;}
+renderer.setPixelRatio(matchMedia("(max-width:720px)").matches?1:Math.min(window.devicePixelRatio||1,1.5));
 var scene=new T.Scene(),cam=new T.PerspectiveCamera(36,1.78,.1,200);
 scene.add(new T.HemisphereLight(0xffffff,0x20315a,.95));
 var k1=new T.DirectionalLight(0xffffff,.85);k1.position.set(8,14,10);scene.add(k1);
